@@ -62,7 +62,7 @@ header nav ul li a {
 }
 
 #hero .jumbotron {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(10, 10, 10, 0.5);
     padding: 20px;
     border-radius: 10px;
 }
@@ -80,7 +80,7 @@ header nav ul li a {
 .cta {
     display: inline-block;
     padding: 10px 20px;
-    background: #070707;
+    background: #7266df;
     color:  #f7f3f3;
     text-decoration: none;
     border-radius: 5px;
