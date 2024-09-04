@@ -1,6 +1,6 @@
-setTimeout(function (){
+setTimeout(function () {
     alert("Selamat Datang di Chanawa!");
-}, 3000) ;
+}, 3000);
 
 const heroText = document.querySelector("#hero h2");
 const colors =["#ff5733", "#33ff57", "#3357ff"];
@@ -16,7 +16,7 @@ setInterval(changeHeroTextColor, 2000);
 let currentImageIndex = 0;
 const images = ["img/Gamis 1.jpeg", "img/Gamis 2.jpeg", "img/Gamis 3.jpeg"];
 
-function changeHeroTextColor() {
+function changeHeroImage() {
     currentImageIndex = (currentImageIndex + 1) % images.length;
     document.querySelector(
 "#hero"
