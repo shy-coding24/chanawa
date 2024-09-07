@@ -1,67 +1,66 @@
-setTimeout(function () {
-    alert("Selamat Datang di Chanawa!");
-}, 3000);
+/**
+ * Untuk membuat link bisa dicopy
+ */
 
-const heroText = document.querySelector("#hero h2");
-const colors =["#ff5733", "#33ff57", "#3357ff"];
-let colorIndex = 0;
+const actionLink = document.querySelectorAll(".link-card .link-action");
 
-function changeHeroTextColor() {
-    heroText.style.color = colors[colorIndex];
-    colorIndex = (colorIndex + 1) % colors.length;
-}
 
-setInterval(changeHeroTextColor, 2000);
+actionLink.forEach((action) => {
 
-let currentImageIndex = 0;
-const images = ["img/Gamis 1.jpeg", "img/Gamis 2.jpeg", "img/Gamis 3.jpeg"];
+    action.addEventListener("click", (e) => {
+        e.preventDefault();
+    navigator.clipboard.writeText(action.parentElement.getAttribute("href"));
+    
+    /**
+     * Untuk memunculkan toast notification
+     */
+    document.getElementById("toast").innerHTML =`
+        <div class="toast-container">
+        <p> ✅Link <strong> ${action.parentElement.innerText} </strong> berhasil disalin</p>
+        </div>
+        `;
+        /**
+         * Untuk menghilangkan toast notification
+         */
+        setTimeout(() => {
 
-function changeHeroImage() {
-    currentImageIndex = (currentImageIndex + 1) % images.length;
+            document
+            .querySelector("#toast .toast-container")
+        }, 300);
+    
+            
+
+        setTimeout(() => {
+            document
+            .querySelector("#toast .toast-container").remove();
+
+        }, 2000);
+        
+    });
+});
+/**Untuk ganti icon sosmed saat hover
+ * 
+ */
+document.querySelectorAll(".sosmed i").forEach((sosmed)=>{
+sosmed.addEventListener("mouseenter", (e) =>{
+    sosmed.classList.remove("ph");
+    sosmed.classList.add("ph-fill");
+});
+
+sosmed.addEventListener("mouseleave", () =>{
+    sosmed.classList.remove("ph-fill");
+    sosmed.classList.add("ph");
+});
+});
+
+/**
+ * Animasi Text bergerak saat scroll
+ */
+document.addEventListener("scroll", (e)=> {
+    
+
     document.querySelector(
-"#hero"
-    ).style.backgroundImage =`url('${images[currentImageIndex]}')`;
-}
-
-setInterval(changeHeroImage, 2000);
-
-const productImages = document.querySelectorAll(".product-card img");
-
-productImages.forEach( (image)=> {
-    image.addEventListener("click", () => {
-        image.style.transform = "scale(1.5)";
-        image.style.transition = "transform 0.5s";
-    });
-    image.addEventListener("mouseleave", () => {
-        image.style.transform = "scale(1)";
-
-    });
-});
-
-document.querySelectorAll(".cta").forEach(function (button){
-    button.addEventListener("click", function (event) {
-event.preventDefault();
-alert("Terima kasih telah membeli produk ini!");
-    });
-});
-
-const scrollToTopBtn = document.createElement("button");
-scrollToTopBtn.textContent= "^";
-scrollToTopBtn.id = "scrollToToBtn";
-document.body.appendChild(scrollToTopBtn);
-window.addEventListener("scroll", ()=> {
-   if (window.scrollY > 100) {
-    scrollToTopBtn.style.display = "block";
-   } else {
-    scrollToTopBtn.style.display = "none";
-   }
-});
-scrollToTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth", 
-    });
-});
-
-
-   
+        ".bg-text-animation"
+    ).style.transform =`translateX(${window.scrollY / 5}px)`
+    
+})
